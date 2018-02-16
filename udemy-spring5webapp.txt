@@ -1,0 +1,40 @@
+
+
+- start webapp in console
+   mvn spring-boot:run
+
+- Enable console
+   spring.h2.console.enabled=true
+
+- Show console in browser
+   localhost:8080/h2-console
+
+- Jdbc-Url to use in h2-console
+   jdbc:h2:mem:testdb
+
+- Simple join
+   SELECT * FROM BOOK B JOIN AUTHOR_BOOK AB ON B.ID=AB.BOOK_ID
+
+- Entities
+   @Entity
+     kommt aus javax.persistence
+
+- Relationen
+    class Author {
+      @ManyToMany(mappedBy = "authors")
+      private Set<Book> books = new HashSet<>();
+    }
+
+- ManyToMany und nur eine Join-Table
+    class Book {
+      @ManyToMany
+      @JoinTable(name = "author_book",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id"))
+      private Set<Author> authors = new HashSet<>();
+    }
+
+- Ownership
+    Das mappedBy in der Klasse Author gibt an, dass die Klasse Book der Owner ist...
+    "the Book entity owns the relationship"
+    Siehe auch https://vladmihalcea.com/the-best-way-to-use-the-manytomany-annotation-with-jpa-and-hibernate/
