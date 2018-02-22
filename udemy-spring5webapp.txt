@@ -21,7 +21,7 @@
 
 - Relationen
     class Author {
-      @ManyToMany(mappedBy = "authors")
+      @ManyToMany(mappedBy = "authors")            // Book ist der Owner...
       private Set<Book> books = new HashSet<>();
     }
 
@@ -38,3 +38,9 @@
     Das mappedBy in der Klasse Author gibt an, dass die Klasse Book der Owner ist...
     "the Book entity owns the relationship"
     Siehe auch https://vladmihalcea.com/the-best-way-to-use-the-manytomany-annotation-with-jpa-and-hibernate/
+
+- Foreign Keys (w3schools)
+    a Foreign Key is a key used to link two tables together.
+    a Foreign Key is a field (or collection of fields) in one table that refers to the PRIMARY KEY in another table called parent table.
+
+
